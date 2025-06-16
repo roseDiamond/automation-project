@@ -32,7 +32,7 @@ def test_add_single_product(browserInstance,login):
     inventory.go_to_cart()
     assert "cart.html" in driver.current_url,"failed"
 
-@pytest.mark.smoke
+# @pytest.mark.smoke
 def test_rest_functionality(browserInstance,login):
     driver = browserInstance
     inventory = InventoryPage(driver)
@@ -42,12 +42,6 @@ def test_rest_functionality(browserInstance,login):
     inventory.click_reset()
     print(f"cartcount:",inventory.get_cart_count())
     assert 0 == inventory.get_cart_count(),f"Reset failed: cart count{inventory.get_cart_count()}"
-
-
-
-
-
-
 
 
 
@@ -83,7 +77,21 @@ def test_sidemenu(browserInstance,login):
     print("match", sidbar_text)
     assert "Logout" == sidbar_text, " failed not match"
 
-
+# @pytest.mark.smoke
+# def test_removing_product(browserInstance,login):
+#     driver = browserInstance
+#     inventory = InventoryPage(driver)
+#     products = ["Sauce Labs Backpack", "Sauce Labs Bike Light"]
+#     for product in products:
+#         inventory.add_product_to_cart_by_name(product)
+#     len_prod =inventory.go_to_cart()
+#     print(f"cart count is equal product len {len(products)} equal cart count:{len_prod}")
+#     assert len(products) == inventory.get_cart_count(),f"cart count is not{inventory.go_to_cart()}"
+#     inventory.go_to_cart()
+#     time.sleep(1)
+#     product_name = "Sauce Labs Backpack"
+#     inventory.remove_product_by_name(product_name)
+#     time.sleep(2)
 
 
 
@@ -116,6 +124,8 @@ def test_sort_product_high_to_low(browserInstance,login):
     expected = sorted(actual,reverse=True)
     assert actual == expected,f"expected prices high to low {expected}, but got {actual}"
 
+
+
 # @pytest.mark.smoke
 # @pytest.mark.parametrize("option_text, criteria", [
 #     ("Name (A to Z)", "name_asc"),
@@ -137,4 +147,4 @@ def test_sort_product_high_to_low(browserInstance,login):
 #     elif "price" in criteria:
 #         actual = page.get_product_prices()
 #         expected = sorted(actual) if "asc" in criteria else sorted(actual, reverse=True)
-#         assert actual != expected, f"❌ Price sorting failed for {option_text}. Actual: {actual}, Expected: {expected}"
+#         assert actual != expected, f"❌ Price sorting failed for {option_text}. Actual: {actual}, Expected: {expecte

@@ -5,6 +5,8 @@ from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+from sauceDemo.pages.checkout_confirm_page import CheckoutPage
+
 
 class InventoryPage:
     def __init__(self,driver):
@@ -14,7 +16,7 @@ class InventoryPage:
         self.price_locator = (By.CLASS_NAME, "inventory_item_price")
         self.products_locator =(By.CLASS_NAME,"inventory_item")
         self.add_to_cart_buttons = (By.CLASS_NAME, "btn_inventory")
-        self.remove_buttons =(By.CLASS_NAME, "btn_inventory")
+        self.remove_buttons =(By.CLASS_NAME,'btn_secondary ')
         self.cart_badge = (By.CLASS_NAME, "shopping_cart_badge")
         self.about =(By.ID,"about_sidebar_link")
         self.logout =(By.ID,"logout_sidebar_link")
@@ -76,6 +78,7 @@ class InventoryPage:
 
     def go_to_cart(self): #Clicks the cart icon and opens the cart page
         self.driver.find_element(*self.cart_badge).click()
+        return CheckoutPage(self.driver)
 
     def select_sort_option(self,option_value):
         """
